@@ -1,0 +1,18 @@
+.profile__avatar{
+  display: flex;
+  width: 168.75px;
+  height: 127.5px;
+  margin: 0 auto 22.25px;
+}
+
+.header__logo:hover{
+  opacity: 0.8;
+}  
+
+@media screen and (min-width: 1024px) {
+  .profile__avatar{
+    margin: 0 0 0 -22.5px;
+    grid-column: 1; 
+    grid-row: 1 / span 2;
+  }  
+} 
