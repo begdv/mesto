@@ -3,8 +3,8 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .root__header{
-    margin: 45px 200px 36.25px;
+  .content__profile{
+    margin: 0 0 44px;
   }  
 } 
 

@@ -1,0 +1,25 @@
+.place__mask{
+  position: relative;
+  border-radius: 10px 10px 0px 0px;
+  margin: 0;
+}
+
+.place__mask:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  background-color: #C4C4C4;  
+  opacity: 0.5;
+  transition: opacity 0.5s ease;  
+}
+
+.place__mask:hover:before{
+  background-color: #C4C4C4; 
+  opacity: 0.1; 
+}
+
+
+

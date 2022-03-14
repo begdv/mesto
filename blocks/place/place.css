@@ -1,4 +1,28 @@
 .place{
-
+    display: flex;
+    position: relative;
+    width: 100%;
+    flex-direction: column;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;    
 }
+
+.place__mask:before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 10px 10px 0px 0px;
+    background: #2A2C2F;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+  }
+  
+  .place__mask:hover:before{
+    opacity: 0.8;
+  }
 

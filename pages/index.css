@@ -16,4 +16,34 @@
 @import url(../blocks/profile/__add-mesto/profile__add-mesto.css);
 @import url(../blocks/places/places.css);
 @import url(../blocks/place/place.css);
+@import url(../blocks/place/__mask/place__mask.css);
+@import url(../blocks/place/__photo/place__photo.css);
+@import url(../blocks/place/__info/place__info.css);
+@import url(../blocks/place/__title/place__title.css);
+@import url(../blocks/place/__like/place__like.css);
 @import url(../blocks/footer/footer.css);
+
+.darkened {
+  position: relative;
+}
+ 
+.darkened::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.darkened:hover:before {
+    background-color: rgba(0,0,0,0.5);  
+    cursor: pointer;
+  }
+
+.pic{
+    width: 100%;
+    height: auto;
+    background: white;
+    color: black;
+}

@@ -1,0 +1,9 @@
+.place__info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 78px;
+  padding: 25px 19px 31px 21px;
+  box-sizing: border-box;
+}
+

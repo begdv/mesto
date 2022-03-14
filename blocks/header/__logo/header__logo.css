@@ -1,7 +1,9 @@
 .header__logo{
+  display: block;
   width: 103.74px;
   height: 24.4px;
   background-size: cover;
+  background-image: url(../../../images/header/header-logo.png);
 }
 
 .header__logo:hover{
