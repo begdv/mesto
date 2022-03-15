@@ -8,8 +8,8 @@
   background: #000;
   box-sizing: border-box;
   background-image: url(../../../images/dialog/close-icon.svg);
-  background-size: cover;  
-  border: 0
+  background-size: cover;
+  border: 0;
 }
 
 .popup__close-button:hover{
