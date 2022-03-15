@@ -1,0 +1,12 @@
+.edit-form__input-description{
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  height: 27px;
+  width: 100%;
+  margin: 0 0 45px;
+  padding: 0 0 13px;
+  border-style: none;
+  border-bottom: solid rgba(0, 0, 0, .2) 1px;
+}
