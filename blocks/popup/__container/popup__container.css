@@ -3,7 +3,6 @@
     width: calc(100vw - 38px);
     height: 322px;
     left: calc(19px);
-    right: calc(19px);
     top: calc(50vh - 161px);
     background: rgba(255, 255, 255, 0);
 }
@@ -13,8 +12,6 @@
         width: 430px;
         height: 330px;
         left: calc(50vw - 215px);
-        right: calc(50vw - 215px);
         top: calc(50vh - 165px);
-        bottom: calc(50vh - 165px);
     }  
   }
