@@ -8,7 +8,7 @@
 @media screen and (min-width: 1024px) {
   .profile__avatar{
     margin: 0 0 0 -22.5px;
-    grid-column: 1; 
+    grid-column: 1;
     grid-row: 1 / span 2;
   }  
 }
