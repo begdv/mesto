@@ -5,7 +5,7 @@
   vertical-align: center;
   height: 46px;
   width: 100%;
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -13,6 +13,7 @@
   color: #FFFFFF;
   background: #000000;
   border-radius: 2px;
+  border: 0;
 }
 
 .edit-form__save-button:hover{

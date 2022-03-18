@@ -1,4 +1,4 @@
-.edit-form__input-description{
+.edit-form__input-text{
   box-sizing: border-box;
   font-weight: 400;
   font-size: 14px;
@@ -9,4 +9,5 @@
   padding: 0 0 13px;
   border-style: none;
   border-bottom: solid rgba(0, 0, 0, .2) 1px;
+  outline: none;
 }

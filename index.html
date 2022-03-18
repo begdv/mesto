@@ -16,87 +16,75 @@
     </header> 
     <main class="content root__content">
       <section class="profile content__profile">
-        <div class="profile__avatar"><img class="profile__photo" src="./images/profile/profile.jpg" alt="Фото профиля"></div>
+        <img class="profile__avatar" src="./images/profile/profile.jpg" alt="Фото профиля">
         <div class="profile__header"><h1 class="profile__title">Юрий Визбор</h1>
           <button type="button" class="profile__edit"  title="Редактировать профиль"></button></div>
-        <div class="profile__description">Артист, бард</div>
+        <p class="profile__description">Артист, бард</p>
         <button type="button" class="profile__add-mesto" title="Добавить место"></button>
       </section>
       <section>
         <ul  class="places">
           <li class="place">
-            <a class="place__mask" target="blank_" href="https://ru.wikipedia.org/wiki/%D0%94%D0%BE%D0%BC%D0%B1%D0%B0%D0%B9_(%D0%B3%D0%BE%D1%80%D0%BD%D0%B0%D1%8F_%D1%82%D0%B5%D1%80%D1%80%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F)">
-              <img class="place__photo" src="./images/places/dombaj.jpg" alt="Домбай"> 
-            </a>
+            <img class="place__photo" src="./images/places/dombaj.jpg" alt="Домбай"> 
             <div class="place__info">
               <h2 class="place__title">Домбай</h2>
               <button class="place__like" type="button"></button>
             </div> 
           </li>
           <li class="place">
-            <a class="place__mask" target="blank_" href="https://ru.wikipedia.org/wiki/%D0%94%D0%BE%D0%BC%D0%B1%D0%B0%D0%B9_(%D0%B3%D0%BE%D1%80%D0%BD%D0%B0%D1%8F_%D1%82%D0%B5%D1%80%D1%80%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F)">
-              <img class="place__photo" src="./images/places/kandalaksha.jpg" alt="Кандалакша">  
-            </a>
+            <img class="place__photo" src="./images/places/kandalaksha.jpg" alt="Кандалакша">  
             <div class="place__info">
               <h2 class="place__title">Кандалакша</h2>
               <button class="place__like" type="button"></button>
             </div> 
           </li>
           <li class="place">
-            <a class="place__mask" target="blank_" href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D1%80%D0%B0%D1%87%D0%B0%D0%B5%D0%B2%D1%81%D0%BA">
-              <img class="place__photo" src="./images/places/karachaevsk.jpg" alt="Карачаевск">  
-            </a>
+            <img class="place__photo" src="./images/places/karachaevsk.jpg" alt="Карачаевск">  
             <div class="place__info">
               <h2 class="place__title">Карачаевск</h2>
               <button class="place__like" type="button"></button>
             </div> 
           </li>
           <li class="place">
-            <a class="place__mask" target="blank_" href="https://ru.wikipedia.org/wiki/%D0%AD%D0%BB%D1%8C%D0%B1%D1%80%D1%83%D1%81">
-              <img class="place__photo" src="./images/places/elbrus.jpg" alt="Эльбрус"> 
-            </a>
+            <img class="place__photo" src="./images/places/elbrus.jpg" alt="Эльбрус"> 
             <div class="place__info">
               <h2 class="place__title">Эльбрус</h2>
               <button class="place__like" type="button"></button>
             </div> 
           </li>
           <li class="place">
-            <a class="place__mask" target="blank_" href="https://ru.wikipedia.org/wiki/%D0%9F%D0%B0%D0%BC%D0%B8%D1%80">
-              <img class="place__photo" src="./images/places/pamir.jpg" alt="Памир">
-            </a>
+            <img class="place__photo" src="./images/places/pamir.jpg" alt="Памир">
             <div class="place__info">
               <h2 class="place__title">Памир</h2>
               <button class="place__like" type="button"></button>
             </div> 
           </li>
           <li class="place">
-            <a class="place__mask" target="blank_" href="https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D0%BA_%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B">
-              <img class="place__photo" src="./images/places/pik_pobedy.jpg" alt="Пик Победы">  
-            </a>
+            <img class="place__photo" src="./images/places/pik_pobedy.jpg" alt="Пик Победы">  
             <div class="place__info">
               <h2 class="place__title">Пик Победы</h2>
               <button class="place__like" type="button"></button>
             </div> 
-          </li>
+          </li>                    
         </ul>
       </section>
-      <div class="popup">
-        <div class="popup__container">
-          <button class="popup__close-button"></button>
-          <form class="edit-form">
-            <h2 class="edit-form__title">Редактировать профиль</h2>
-            <input class="edit-form__input-name">
-            <input class="edit-form__input-description">
-            <button class="edit-form__save-button" type='submit'>Сохранить</button>
-          </form>
-        </div>
-      </div>  
     </main>
     <footer class="footer"> 
       <p class="footer__copyright">
         © 2020 Mesto Russia
       </p>
     </footer> 
-    <script src="./scripts/script.js"></script>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close-button" type="reset"></button>
+        <form class="edit-form" name="edit-form">
+          <h2 class="edit-form__title">Редактировать профиль</h2>
+          <input class="edit-form__input-text edit-form__input-text_input_name" type="text" name="input-name">
+          <input class="edit-form__input-text edit-form__input-text edit-form__input-text_input_description" type="text" name="input-description">
+          <button class="edit-form__save-button" type='submit'>Сохранить</button>
+        </form>
+      </div>
+    </div> 
+    <script src="./scripts/index.js"></script>
   </body>
-</html>          
+  </html>          

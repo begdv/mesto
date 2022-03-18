@@ -2,7 +2,7 @@
   width: 22px;
   height: 19px;
   background: #fff;
-  background-image: url(../../../images/places/like-disabled.svg);
+  background-image: url(../../../images/places/like.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
 }
 
 .place__like:hover{
-  background-image: url(../../../images/places/like-hover.svg);
+  opacity: 0.5;
   cursor: pointer;
 }
 

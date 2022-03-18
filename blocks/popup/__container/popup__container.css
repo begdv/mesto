@@ -1,17 +1,14 @@
 .popup__container{
-    position: absolute;
-    width: calc(100vw - 38px);
-    height: 322px;
-    left: calc(19px);
-    top: calc(50vh - 161px);
+    position: relative;
+    margin: auto;
+    width: calc(100vw - 54px);
+    min-height: 322px;
     background: rgba(255, 255, 255, 0);
 }
 
 @media screen and (min-width: 1024px) {
     .popup__container{
         width: 430px;
-        height: 330px;
-        left: calc(50vw - 215px);
-        top: calc(50vh - 165px);
+        min-height: 330px;
     }  
   }
