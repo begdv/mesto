@@ -1,13 +1,15 @@
 .edit-form__input-text{
-  box-sizing: border-box;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  height: 27px;
   width: 100%;
-  margin: 0 0 45px;
-  padding: 0 0 13px;
+  margin: 0 0 28px;
+  padding: 0 0 10px;
   border-style: none;
   border-bottom: solid rgba(0, 0, 0, .2) 1px;
   outline: none;
 }
+
+.edit-form__input-text:last-of-type{
+  margin-bottom: 45px;
+}  
