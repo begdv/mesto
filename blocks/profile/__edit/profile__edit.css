@@ -10,6 +10,7 @@
   background-size: 7.5px 7.5px;
   background-position: center;
   background-repeat: no-repeat;
+  flex: none;
 }
 
 .profile__edit:hover{

@@ -21,5 +21,12 @@
     align-self: flex-start;
     font-size: 18px;
     line-height: 21px;
+    max-width: calc(100vw - 750px);    
   }  
 } 
+
+@media screen and (min-width: 1280px) {
+  .profile__description{
+    max-width: 530px;
+  }  
+}

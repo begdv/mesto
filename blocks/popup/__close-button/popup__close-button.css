@@ -2,7 +2,7 @@
   display: flex;
   position: absolute;
   top: -32px;
-  left: 100%;
+  right: 0;
   width: 19px;
   height: 19px;
   background: #000;
@@ -20,7 +20,7 @@
 @media screen and (min-width: 1024px) {
   .popup__close-button{
     top: -40px;
-    left: 438px;
+    right: -40px;
     width: 32px;
     height: 32px;
   }  
