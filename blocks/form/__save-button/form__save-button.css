@@ -1,4 +1,4 @@
-.edit-form__save-button{
+.form__save-button{
   box-sizing: border-box;
   margin: 0;
   text-align: center;
@@ -16,13 +16,13 @@
   border: 0;
 }
 
-.edit-form__save-button:hover{
+.form__save-button:hover{
   opacity: 0.8;
   cursor: pointer;
 }  
 
 @media screen and (min-width: 1024px) {
-  .edit-form__save-button{
+  .form__save-button{
     font-size: 18px;
     line-height: 22px;
     width: 358px;

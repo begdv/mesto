@@ -1,4 +1,4 @@
-.edit-form__input-text{
+.form__input-text{
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -10,6 +10,6 @@
   outline: none;
 }
 
-.edit-form__input-text:last-of-type{
+.form__input-text:last-of-type{
   margin-bottom: 45px;
 }  
