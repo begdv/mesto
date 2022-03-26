@@ -1,4 +1,4 @@
-.place{
+.card{
     display: flex;
     position: relative;
     width: 100%;
@@ -8,6 +8,6 @@
     border-radius: 10px;    
 }
   
-  .place:hover{
+  .card:hover{
     opacity: 0.8;
   }

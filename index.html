@@ -23,49 +23,7 @@
         <button type="button" class="profile__add-mesto" title="Добавить место"></button>
       </section>
       <section>
-        <ul  class="places">
-          <li class="place">
-            <img class="place__photo" src="./images/places/dombaj.jpg" alt="Домбай"> 
-            <div class="place__info">
-              <h2 class="place__title">Домбай</h2>
-              <button class="place__like" type="button"></button>
-            </div> 
-          </li>
-          <li class="place">
-            <img class="place__photo" src="./images/places/kandalaksha.jpg" alt="Кандалакша">  
-            <div class="place__info">
-              <h2 class="place__title">Кандалакша</h2>
-              <button class="place__like" type="button"></button>
-            </div> 
-          </li>
-          <li class="place">
-            <img class="place__photo" src="./images/places/karachaevsk.jpg" alt="Карачаевск">  
-            <div class="place__info">
-              <h2 class="place__title">Карачаевск</h2>
-              <button class="place__like" type="button"></button>
-            </div> 
-          </li>
-          <li class="place">
-            <img class="place__photo" src="./images/places/elbrus.jpg" alt="Эльбрус"> 
-            <div class="place__info">
-              <h2 class="place__title">Эльбрус</h2>
-              <button class="place__like" type="button"></button>
-            </div> 
-          </li>
-          <li class="place">
-            <img class="place__photo" src="./images/places/pamir.jpg" alt="Памир">
-            <div class="place__info">
-              <h2 class="place__title">Памир</h2>
-              <button class="place__like" type="button"></button>
-            </div> 
-          </li>
-          <li class="place">
-            <img class="place__photo" src="./images/places/pik_pobedy.jpg" alt="Пик Победы">  
-            <div class="place__info">
-              <h2 class="place__title">Пик Победы</h2>
-              <button class="place__like" type="button"></button>
-            </div> 
-          </li>                    
+        <ul  class="cards">
         </ul>
       </section>
     </main>
@@ -86,6 +44,15 @@
         </div>
         <button class="form__save-button" type='submit'>Сохранить</button>
       </form>
+    </template>  
+    <template id="card-template">
+      <li class="card">
+        <img class="card__photo" src="" alt=""> 
+        <div class="card__info">
+          <h2 class="card__title"></h2>
+          <button class="card__like" type="button"></button>
+        </div> 
+      </li>
     </template>     
     <script src="./scripts/index.js"></script>
   </body>
