@@ -13,7 +13,3 @@
   opacity: 0.5;
   cursor: pointer;
 }
-
-.card__like:active{
-  background-image: url(../../../images/cards/like-active.svg);
-}

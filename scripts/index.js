@@ -36,14 +36,15 @@ const profile = content.querySelector('.profile')
 const profileEdit = profile.querySelector('.profile__edit');
 const profileTitle = profile.querySelector('.profile__title');
 const profileDescription = profile.querySelector('.profile__description');
-profileEdit.addEventListener('click', profileEditPopup);
 const addMesto = profile.querySelector('.profile__add-mesto');
-addMesto.addEventListener('click', addMestoPopup);
-
 const cards = content.querySelector('.cards');
-
 const popupCloseButton = popup.querySelector('.popup__close-button');
+
+profileEdit.addEventListener('click', profileEditPopup);
+addMesto.addEventListener('click', addMestoPopup);
 popupCloseButton.addEventListener('click', popupClose);
+
+makeInicialCards();
 
 function makeInicialCards(){
   initialCards.forEach(appendCard);
@@ -60,10 +61,14 @@ function makeCard(card){
   cardPhoto.src = card.link;
   cardPhoto.alt = card.name;
   cardElem.querySelector('.card__title').textContent = card.name;
+  cardElem.addEventListener('click', cardLike);
   return cardElem;
 }
 
-makeInicialCards();
+function cardLike(evt){
+  console.log(evt.target);
+  evt.target.classList.toggle('card__like_active');
+}  
 
 function profileEditPopup(){
   const formTemplate = document.querySelector('#form-template').content;
