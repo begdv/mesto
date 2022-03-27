@@ -61,14 +61,18 @@ function makeCard(card){
   cardPhoto.src = card.link;
   cardPhoto.alt = card.name;
   cardElem.querySelector('.card__title').textContent = card.name;
-  cardElem.addEventListener('click', cardLike);
+  cardElem.querySelector('.card__like').addEventListener('click', cardLike);
+  cardElem.querySelector('.card__trash').addEventListener('click', cardTrash);
   return cardElem;
 }
 
 function cardLike(evt){
-  console.log(evt.target);
   evt.target.classList.toggle('card__like_active');
 }  
+
+function cardTrash(evt){
+  evt.target.parentElement.remove();
+} 
 
 function profileEditPopup(){
   const formTemplate = document.querySelector('#form-template').content;
