@@ -32,15 +32,12 @@
         © 2020 Mesto Russia
       </p>
     </footer> 
-    <div class="popup">
-      <div class="popup__container">
-        <button class="popup__close-button" type="button"></button>
-      </div>
+    <div class="popup popup_state_closed">
     </div> 
     <template id="form-template">
       <form class="form" name="form">
         <h2 class="form__title"></h2>
-        <div class="form__content" style="width:100%;">         
+        <div class="form__content">         
         </div>
         <button class="form__save-button" type='submit'>Сохранить</button>
       </form>
@@ -54,7 +51,18 @@
         </div> 
         <a class="card__trash" type="button"></a>
       </li>
-    </template>     
+    </template> 
+    <template id="card-popup-template">
+      <div class="card-popup">
+        <img class="card-popup__photo" src="" alt=""> 
+        <p class="card-popup__title"></p>
+      </div>
+    </template> 
+    <template id="popup-template">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+      </div>
+    </template>    
     <script src="./scripts/index.js"></script>
   </body>
 </html>          
