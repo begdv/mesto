@@ -1,5 +1,5 @@
 .popup__container_type_form{
-  background: rgba(255, 255, 255, 0);  
+  background: rgba(255, 255, 255, 0);
   width: calc(100vw - 38px);
   min-height: 322px;
 }
