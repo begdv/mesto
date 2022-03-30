@@ -67,23 +67,24 @@ function closePopup(popup){
 }
 
 function closeProfilePopup(){
-  closePopup(profilePopup);
+  profilePopup.classList.remove('popup_opened');
 }
 
 function closeCardPopup(){
-  closePopup(cardPopup);
+  cardPopup.classList.remove('popup_opened');
 }
 
 function closeImagePopup(){
-  closePopup(imagePopup);
+  imagePopup.classList.remove('popup_opened');;
 }
 
-function makeInicialCards(){
-  initialCards.forEach(appendCard);
+function makeInicialCards(cards){
+  initialCards.forEach(card => addCard(cards, card));
 }
 
-function appendCard(card){
-  cards.append(makeCard(card));
+function addCard(cards, card){
+  const cardItem = makeCard(card);
+  cards.prepend(cardItem);
 }  
 
 function makeCard(card){
@@ -97,7 +98,7 @@ function makeCard(card){
   cardTitle.textContent = card.name;  
   cardButtonLike.addEventListener('click', likeCard);
   cardButtonTrash.addEventListener('click', trashCard);  
-  cardPhoto.addEventListener('click', popupCard);
+  cardPhoto.addEventListener('click', popupImage);
   return cardElem;
 }
 
@@ -109,12 +110,12 @@ function trashCard(evt){
   evt.target.closest('.card').remove();
 } 
 
-function popupCard(evt){
+function popupImage(evt){
   const cardPhoto = evt.target;
   imagePhoto.src = cardPhoto.src;
   imagePhoto.alt = cardPhoto.alt;
   imageTitle.textContent = cardPhoto.alt;
-  openPopup(imagePopup, cardPopupElem);
+  openPopup(imagePopup, image);
 }
 
 function popupProfile(){
@@ -136,18 +137,18 @@ function popupCard(){
   openPopup(cardPopup, cardForm);
 }
 
-function keyDownEnterCardInput(evt){
+function enterNewCard(evt){
   if (evt.keyCode === KEY_ENTER) {
-    addCard(evt);
+    addNewCard(evt);
   }
 } 
 
-function addCard(evt){
+function addNewCard(evt){
   evt.preventDefault();
-  cards.prepend(makeCard({
+  addCard(cards, {
     name: cardInputName.value,
     link: cardInputHref.value
-  }));
+  });
   closePopup(cardPopup);
 } 
 
@@ -156,9 +157,9 @@ buttonAddMesto.addEventListener('click', popupCard);
 profilePopupButtonClose.addEventListener('click', closeProfilePopup);
 cardPopupButtonClose.addEventListener('click', closeCardPopup);
 imagePopupButtonClose.addEventListener('click', closeImagePopup);
-cardInputName.addEventListener('keydown', keyDownEnterCardInput);
-cardInputHref.addEventListener('keydown', keyDownEnterCardInput);
-cardForm.addEventListener('submit', addCard);
 profileForm.addEventListener('submit', saveProfile);
+cardForm.addEventListener('submit', addNewCard);
+cardInputName.addEventListener('keydown', enterNewCard);
+cardInputHref.addEventListener('keydown', enterNewCard);
 
-makeInicialCards();
+makeInicialCards(cards);
