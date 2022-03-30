@@ -75,7 +75,7 @@ function closeCardPopup(){
 }
 
 function closeImagePopup(){
-  imagePopup.classList.remove('popup_opened');;
+  imagePopup.classList.remove('popup_opened');
 }
 
 function makeInicialCards(cards){
@@ -115,7 +115,7 @@ function popupImage(evt){
   imagePhoto.src = cardPhoto.src;
   imagePhoto.alt = cardPhoto.alt;
   imageTitle.textContent = cardPhoto.alt;
-  openPopup(imagePopup, image);
+  openPopup(imagePopup);
 }
 
 function popupProfile(){
@@ -134,14 +134,8 @@ function saveProfile(evt){
 function popupCard(){
   cardInputName.value = '';
   cardInputHref.value = '';
-  openPopup(cardPopup, cardForm);
+  openPopup(cardPopup);
 }
-
-function enterNewCard(evt){
-  if (evt.keyCode === KEY_ENTER) {
-    addNewCard(evt);
-  }
-} 
 
 function addNewCard(evt){
   evt.preventDefault();
@@ -159,7 +153,5 @@ cardPopupButtonClose.addEventListener('click', closeCardPopup);
 imagePopupButtonClose.addEventListener('click', closeImagePopup);
 profileForm.addEventListener('submit', saveProfile);
 cardForm.addEventListener('submit', addNewCard);
-cardInputName.addEventListener('keydown', enterNewCard);
-cardInputHref.addEventListener('keydown', enterNewCard);
 
 makeInicialCards(cards);
