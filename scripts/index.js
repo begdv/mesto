@@ -51,12 +51,12 @@ const imagePhoto = image.querySelector('.image__photo');
 const imageTitle = image.querySelector('.image__title');
 
 const profileForm = profilePopup.querySelector('.profile-form');
-const profileInputName = profileForm.querySelector('.edit-form__input-text_input_name');
-const profileInputDescription = profileForm.querySelector('.edit-form__input-text_input_description');
+const profileInputName = profileForm.querySelector('.form__input-text_input_profile-name');
+const profileInputDescription = profileForm.querySelector('.form__input-text_input_profile-description');
 
 const cardForm = cardPopup.querySelector('.card-form');
-const cardInputName = cardForm.querySelector('.new-item__input-text_input_name');
-const cardInputHref = cardForm.querySelector('.new-item__input-text_input_href');
+const cardInputName = cardForm.querySelector('.form__input-text_input_card-name');
+const cardInputHref = cardForm.querySelector('.form__input-text_input_card-href');
 
 function openPopup(popup){
   popup.classList.add('popup_opened'); 
