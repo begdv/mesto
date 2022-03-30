@@ -1,4 +1,4 @@
-.card__trash{
+.card__button-trash{
   position: absolute;
   top: 20px;
   right: 20px;
@@ -11,7 +11,7 @@
   opacity: 1;
 }
 
-.card__trash:hover{
+.card__button-trash:hover{
   opacity: 0.6;
   cursor: pointer;
 }
