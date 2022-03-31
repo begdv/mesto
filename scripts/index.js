@@ -25,8 +25,6 @@ const initialCards = [
   }
 ]; 
 
-const KEY_ENTER = 13;
-
 const content = document.querySelector('.content');
 
 const profilePopup = document.querySelector('.popup_type_profile');
@@ -62,20 +60,8 @@ function openPopup(popup){
   popup.classList.add('popup_opened'); 
 }
 
-function closePopup(popup){
-  popup.classList.remove('popup_opened');
-}
-
-function closeProfilePopup(){
-  profilePopup.classList.remove('popup_opened');
-}
-
-function closeCardPopup(){
-  cardPopup.classList.remove('popup_opened');
-}
-
-function closeImagePopup(){
-  imagePopup.classList.remove('popup_opened');
+function closePopup(evt){
+  evt.target.closest('.popup').classList.remove('popup_opened');
 }
 
 function makeInicialCards(cards){
@@ -148,9 +134,9 @@ function addNewCard(evt){
 
 profileEdit.addEventListener('click', popupProfile);
 buttonAddMesto.addEventListener('click', popupCard);
-profilePopupButtonClose.addEventListener('click', closeProfilePopup);
-cardPopupButtonClose.addEventListener('click', closeCardPopup);
-imagePopupButtonClose.addEventListener('click', closeImagePopup);
+profilePopupButtonClose.addEventListener('click', closePopup);
+cardPopupButtonClose.addEventListener('click', closePopup);
+imagePopupButtonClose.addEventListener('click', closePopup);
 profileForm.addEventListener('submit', saveProfile);
 cardForm.addEventListener('submit', addNewCard);
 
