@@ -1,30 +1,43 @@
-const profileForm1 = document.querySelector('.profile-form');
-const profileInputName1 = profileForm1.querySelector('.form__input-text_input_profile-name');
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.form'));
 
-function enableValidation(){
-    profileForm1.addEventListener('submit', function (evt) {
-        evt.preventDefault();
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
     });
-    profileInputName1.addEventListener('input', isValid);     
-}
 
-const showInputError = (element) => {
-    element.classList.add('form__input_type_error');
-    const elementError = profileForm1.querySelector(`.form__input-error_input_${element.name}`);
-    elementError.textContent = element.validationMessage;
-  };
+    setEventListeners(formElement);
+  });
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
+
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+      isValid(formElement, inputElement)
+    });
+  });
+}; 
   
-  const hideInputError = (element) => {
-    element.classList.remove('form__input_type_error');
-    elementError.textContent = '';
-  };
-  
-  const isValid = () => {
-    if (!profileInputName1.validity.valid) {
-      showInputError(profileInputName1);
-    } else {
-      hideInputError(profileInputName1);
-    }
-  };
+const isValid = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.form__input-error_input_${inputElement.name}`);
+  inputElement.classList.add('form__input_type_error');
+  errorElement.textContent = errorMessage;
+};
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.form__input-error_input_${inputElement.name}`);
+  errorElement.textContent = '';
+  inputElement.classList.remove('form__input_type_error');
+};
 
 enableValidation();
