@@ -18,7 +18,7 @@ const enableValidation = (config) => {
 const setEventListeners = (config, formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
-//  toggleButtonState(config, inputList, buttonElement);
+  toggleButtonState(config, inputList, buttonElement);
   formElement.addEventListener('input', (evt) => handleFormInput(evt, config, inputList, buttonElement));
 }; 
 
@@ -45,8 +45,8 @@ const showInputError = (config, inputElement, errorElement, errorMessage) => {
 };
 
 const hideInputError = (config, inputElement, errorElement) => {
+  errorElement.classList.remove(config.visibleErrorClass);  
   errorElement.textContent = '';
-  errorElement.classList.remove(config.visibleErrorClass);
   inputElement.classList.remove(config.inputErrorClass);
 };
 
@@ -67,4 +67,3 @@ const toggleButtonState = (config, inputList, buttonElement) => {
 }; 
 
 enableValidation(config);
-
