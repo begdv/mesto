@@ -30,7 +30,7 @@ const handleFormInput = ((evt, config, inputList, buttonElement) => {
 });
   
 const isValid = (config, formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${config.errorClass}_input_${inputElement.name}`);
+  const errorElement = formElement.querySelector(`.${config.errorClass}_field_${inputElement.name}`);
   if (!inputElement.validity.valid) {
     showInputError(config, inputElement, errorElement, inputElement.validationMessage);
   } else {
