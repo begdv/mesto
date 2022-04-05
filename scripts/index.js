@@ -33,10 +33,6 @@ const profilePopup = document.querySelector('.popup_type_profile');
 const cardPopup = document.querySelector('.popup_type_card');
 const imagePopup = document.querySelector('.popup_type_image');
 
-const profilePopupButtonClose = profilePopup.querySelector('.popup__button-close');
-const cardPopupButtonClose = cardPopup.querySelector('.popup__button-close');
-const imagePopupButtonClose = imagePopup.querySelector('.popup__button-close');
-
 const profile = content.querySelector('.profile');
 const profileEdit = profile.querySelector('.profile__edit');
 const profileTitle = profile.querySelector('.profile__title');
@@ -64,8 +60,8 @@ const openPopup = (popup) => {
 }
 
 const handleEscapePopup = (evt) => {
-  const activePopup = document.querySelector('.popup_opened');
   if (evt.which === ESC_KEYCODE) {
+    const activePopup = document.querySelector('.popup_opened');
     closePopup(activePopup);
   };
 }
@@ -75,7 +71,16 @@ const handleCloseButton = (evt) => {
   closePopup(popup);
 }  
 
+
+const handleClickPopup = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    const popup = evt.target;
+    closePopup(popup);
+  }
+}
+
 const closePopup = (popup) => {
+  document.removeEventListener('keydown', handleEscapePopup);
   popup.classList.remove('popup_opened');
 }  
 
@@ -143,12 +148,19 @@ const addNewCard = (evt) => {
   closePopup(cardPopup);
 } 
 
+const setPopupListeners = () => {
+  const popupList = Array.from(document.querySelectorAll('.popup'));
+  popupList.forEach((popupElement) => {
+    const popupCloseBtn = popupElement.querySelector('.popup__button-close')
+    popupCloseBtn.addEventListener('click', handleCloseButton);
+    popupElement.addEventListener('click', handleClickPopup);
+  });  
+}
+
 profileEdit.addEventListener('click', popupProfile);
 buttonAddMesto.addEventListener('click', popupCard);
-profilePopupButtonClose.addEventListener('click', handleCloseButton);
-cardPopupButtonClose.addEventListener('click', closePopup);
-imagePopupButtonClose.addEventListener('click', closePopup);
 profileForm.addEventListener('submit', saveProfile);
 cardForm.addEventListener('submit', addNewCard);
 
 makeInicialCards(cards);
+setPopupListeners();
