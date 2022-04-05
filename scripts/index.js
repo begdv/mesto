@@ -35,7 +35,7 @@ const profilePopupButtonClose = profilePopup.querySelector('.popup__button-close
 const cardPopupButtonClose = cardPopup.querySelector('.popup__button-close');
 const imagePopupButtonClose = imagePopup.querySelector('.popup__button-close');
 
-const profile = content.querySelector('.profile')
+const profile = content.querySelector('.profile');
 const profileEdit = profile.querySelector('.profile__edit');
 const profileTitle = profile.querySelector('.profile__title');
 const profileDescription = profile.querySelector('.profile__description');
@@ -114,7 +114,7 @@ function saveProfile(evt){
   evt.preventDefault();
   profileTitle.textContent = profileInputName.value;
   profileDescription.textContent = profileInputDescription.value;
-  closePopup(profilePopup);
+  closePopup(evt);
 }
 
 function popupCard(){
@@ -129,7 +129,7 @@ function addNewCard(evt){
     name: cardInputName.value,
     link: cardInputHref.value
   });
-  closePopup(cardPopup);
+  closePopup(evt);
 } 
 
 profileEdit.addEventListener('click', popupProfile);
