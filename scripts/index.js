@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
-
 const ESC_KEYCODE = 27;
 
 const content = document.querySelector('.content');
@@ -53,6 +26,7 @@ const profileInputDescription = profileForm.querySelector('.form__input_field_pr
 const cardForm = cardPopup.querySelector('.card-form');
 const cardInputName = cardForm.querySelector('.form__input_field_card-name');
 const cardInputHref = cardForm.querySelector('.form__input_field_card-href');
+const cardButtonNew = cardForm.querySelector('.form__button-new');
 
 const openPopup = (popup) => {
   popup.classList.add('popup_opened'); 
@@ -84,7 +58,7 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
 }  
 
-const makeInicialCards = (cards) => {
+const makeInitialCards = (cards) => {
   initialCards.forEach(card => addCard(cards, card));
 }
 
@@ -102,17 +76,17 @@ const makeCard = (card) => {
   cardPhoto.src = card.link;
   cardPhoto.alt = card.name;
   cardTitle.textContent = card.name;  
-  cardButtonLike.addEventListener('click', likeCard);
-  cardButtonTrash.addEventListener('click', trashCard);  
-  cardPhoto.addEventListener('click', popupImage);
+  cardButtonLike.addEventListener('click', handleLikeCard);
+  cardButtonTrash.addEventListener('click', handleTrashCard);  
+  cardPhoto.addEventListener('click', openImagePopup);
   return cardElem;
 }
 
-const likeCard = (evt) => evt.target.classList.toggle('card__button-like_active');
+const handleLikeCard = (evt) => evt.target.classList.toggle('card__button-like_active');
 
-const trashCard = (evt) => evt.target.closest('.card').remove();
+const handleTrashCard = (evt) => evt.target.closest('.card').remove();
 
-const popupImage = (evt) => {
+const openImagePopup = (evt) => {
   const cardPhoto = evt.target;
   imagePhoto.src = cardPhoto.src;
   imagePhoto.alt = cardPhoto.alt;
@@ -120,7 +94,7 @@ const popupImage = (evt) => {
   openPopup(imagePopup);
 }
 
-const popupProfile = () => {
+const openProfilePopup = () => {
   profileInputName.value = profileTitle.textContent;
   profileInputDescription.value = profileDescription.textContent;
   openPopup(profilePopup);
@@ -133,7 +107,9 @@ const saveProfile = (evt) => {
   closePopup(profilePopup);
 }
 
-const popupCard = () => {
+const openCardPopup = (evt) => {
+  cardButtonNew.classList.add('form__button_disabled');
+  cardButtonNew.setAttribute('disabled', true);
   cardInputName.value = '';
   cardInputHref.value = '';
   openPopup(cardPopup);
@@ -151,16 +127,15 @@ const addNewCard = (evt) => {
 const setPopupListeners = () => {
   const popupList = Array.from(document.querySelectorAll('.popup'));
   popupList.forEach((popupElement) => {
-    const popupCloseBtn = popupElement.querySelector('.popup__button-close')
-    popupCloseBtn.addEventListener('click', handleCloseButton);
+    popupElement.addEventListener('click', handleCloseButton);
     popupElement.addEventListener('click', handleClickPopup);
   });  
 }
 
-profileEdit.addEventListener('click', popupProfile);
-buttonAddMesto.addEventListener('click', popupCard);
+profileEdit.addEventListener('click', openProfilePopup);
+buttonAddMesto.addEventListener('click', openCardPopup);
 profileForm.addEventListener('submit', saveProfile);
 cardForm.addEventListener('submit', addNewCard);
 
-makeInicialCards(cards);
+makeInitialCards(cards);
 setPopupListeners();

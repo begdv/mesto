@@ -18,7 +18,6 @@ const enableValidation = (config) => {
 const setEventListeners = (config, formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
-  toggleButtonState(config, inputList, buttonElement);
   formElement.addEventListener('input', (evt) => handleFormInput(evt, config, inputList, buttonElement));
 }; 
 
@@ -59,7 +58,7 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (config, inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', '');
+    buttonElement.setAttribute('disabled', true);
   } else {
     buttonElement.classList.remove(config.inactiveButtonClass);
     buttonElement.removeAttribute('disabled');
