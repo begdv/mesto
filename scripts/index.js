@@ -26,7 +26,6 @@ const profileInputDescription = profileForm.querySelector('.form__input_field_pr
 const cardForm = cardPopup.querySelector('.card-form');
 const cardInputName = cardForm.querySelector('.form__input_field_card-name');
 const cardInputHref = cardForm.querySelector('.form__input_field_card-href');
-const cardButtonNew = cardForm.querySelector('.form__button-new');
 
 const openPopup = (popup) => {
   popup.classList.add('popup_opened'); 
@@ -40,16 +39,9 @@ const handleEscapePopup = (evt) => {
   };
 }
 
-const handleCloseButton = (evt) => {
-  const popup = evt.target.closest('.popup');
-  closePopup(popup);
-}  
-
-
 const handleClickPopup = (evt) => {
-  if (evt.target === evt.currentTarget) {
-    const popup = evt.target;
-    closePopup(popup);
+  if (evt.target === evt.currentTarget || evt.target.classList.contains("popup__button-close")) { 
+    closePopup(evt.currentTarget);
   }
 }
 
@@ -108,10 +100,9 @@ const saveProfile = (evt) => {
 }
 
 const openCardPopup = (evt) => {
-  cardButtonNew.classList.add('form__button_disabled');
-  cardButtonNew.setAttribute('disabled', true);
   cardInputName.value = '';
   cardInputHref.value = '';
+  setButtonStateOpenPopup(config, cardForm);
   openPopup(cardPopup);
 }
 
@@ -127,7 +118,6 @@ const addNewCard = (evt) => {
 const setPopupListeners = () => {
   const popupList = Array.from(document.querySelectorAll('.popup'));
   popupList.forEach((popupElement) => {
-    popupElement.addEventListener('click', handleCloseButton);
     popupElement.addEventListener('click', handleClickPopup);
   });  
 }

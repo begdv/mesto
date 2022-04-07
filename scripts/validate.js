@@ -55,6 +55,12 @@ const hasInvalidInput = (inputList) => {
   })
 }; 
 
+const setButtonStateOpenPopup = (config, formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+  const buttonElement = formElement.querySelector(config.submitButtonSelector); 
+  toggleButtonState(config, inputList, buttonElement); 
+}; 
+
 const toggleButtonState = (config, inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(config.inactiveButtonClass);
