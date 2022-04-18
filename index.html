@@ -91,13 +91,13 @@
     <div class="popup popup_type_image">
       <div class="popup__container popup__container_type_image">
         <button class="popup__button-close" type="button"></button>
-        <div class="image">
-          <img class="image__photo"> 
-          <p class="image__title"></p>
+        <div class="image-popup">
+          <img class="image-popup__photo"> 
+          <p class="image-popup__title"></p>
         </div>
       </div>      
     </div>     
-    <template id="card-template">
+    <template class="card-template">
       <li class="card">
         <img class="card__photo"> 
         <div class="card__info">
@@ -107,8 +107,9 @@
         <a class="card__button-trash" type="button"></a>
       </li>
     </template> 
-    <script src="./scripts/cards.js"></script>
-    <script src="./scripts/validate.js"></script>        
-    <script src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/Card.js"></script>
+    <script type="module" src="./scripts/initialCards.js"></script>
+    <script type="module" src="./scripts/FormValidator.js"></script>        
+    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>          
