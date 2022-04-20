@@ -1,4 +1,6 @@
-import {addCard} from './card.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import {initialCards, configFormValidator} from './const.js';
 
 const ESC_KEYCODE = 27;
 
@@ -16,6 +18,8 @@ const buttonAddMesto = profile.querySelector('.profile__add-mesto');
 const profileForm = profilePopup.querySelector('.profile-form');
 const profileInputName = profileForm.querySelector('.form__input_field_profile-name');
 const profileInputDescription = profileForm.querySelector('.form__input_field_profile-description');
+
+const cardsContainer = document.querySelector('.cards');
 
 const cardForm = cardPopup.querySelector('.card-form');
 const cardInputName = cardForm.querySelector('.form__input_field_card-name');
@@ -42,11 +46,18 @@ const handleClickPopup = (evt) => {
 const closePopup = (popup) => {
   document.removeEventListener('keydown', handleEscapePopup);
   popup.classList.remove('popup_opened');
+  const form = popup.querySelector('.form');
+  Array.from(form.querySelectorAll('.form__input-error')).forEach((inputError) => {
+    inputError.addEventListener('click', handleClickPopup);
+  });
+
 }  
 
 const openProfilePopup = () => {
   profileInputName.value = profileTitle.textContent;
   profileInputDescription.value = profileDescription.textContent;
+  const profileValidator = new FormValidator(configFormValidator, profileForm);
+  profileValidator.enableValidation();  
   openPopup(profilePopup);
 }
 
@@ -60,13 +71,14 @@ const saveProfile = (evt) => {
 const openCardPopup = (evt) => {
   cardInputName.value = '';
   cardInputHref.value = '';
-  setButtonStateOpenPopup(config, cardForm);
+  const cardValidator = new FormValidator(configFormValidator, cardForm);
+  cardValidator.enableValidation();
   openPopup(cardPopup);
 }
 
 const addNewCard = (evt) => {
   evt.preventDefault();
-  addCard(cards, {
+  addCard(cardsContainer, {
     name: cardInputName.value,
     link: cardInputHref.value
   });
@@ -84,6 +96,20 @@ profileEdit.addEventListener('click', openProfilePopup);
 buttonAddMesto.addEventListener('click', openCardPopup);
 profileForm.addEventListener('submit', saveProfile);
 cardForm.addEventListener('submit', addNewCard);
+
+const addCard = (cardsContainer, item) => {
+  const card = new Card(item, '.card-template');
+  const cardElement = card.generateCard();
+  cardsContainer.prepend(cardElement);
+}
+
+const makeInitialCards = (cards) => {
+  cards.forEach((item) => {
+    addCard(cardsContainer, item);
+  });
+}
+
+makeInitialCards(initialCards);
 
 setPopupListeners();
 

@@ -1,13 +1,10 @@
-import initialCards from './InitialCards.js';
 import {openPopup} from './index.js';
 
 const imagePopup = document.querySelector('.popup_type_image');
 const imagePhoto = imagePopup.querySelector('.image-popup__photo');
 const imageTitle = imagePopup.querySelector('.image-popup__title');
 
-const cardsContainer = document.querySelector('.cards');
-
-class Card {
+export default class Card{
   constructor(card, cardSelector){
     this._name = card.name;
     this._image = card.link;
@@ -64,19 +61,3 @@ class Card {
     openPopup(imagePopup);
   }
 }
-
-const addCard = (cardsContainer, item) => {
-  const card = new Card(item, '.card-template');
-  const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
-}
-
-const makeInitialCards = (cards) => {
-  cards.forEach((item) => {
-    addCard(cardsContainer, item);
-  });
-}
-
-makeInitialCards(initialCards);
-
-export {addCard};
