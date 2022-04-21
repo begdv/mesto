@@ -25,6 +25,11 @@ const cardForm = cardPopup.querySelector('.card-form');
 const cardInputName = cardForm.querySelector('.form__input_field_card-name');
 const cardInputHref = cardForm.querySelector('.form__input_field_card-href');
 
+const cardValidator = new FormValidator(configFormValidator, cardForm);
+cardValidator.enableValidation();
+const profileValidator = new FormValidator(configFormValidator, profileForm);
+profileValidator.enableValidation();  
+
 const openPopup = (popup) => {
   popup.classList.add('popup_opened'); 
   document.addEventListener('keydown', handleEscapePopup);
@@ -46,18 +51,12 @@ const handleClickPopup = (evt) => {
 const closePopup = (popup) => {
   document.removeEventListener('keydown', handleEscapePopup);
   popup.classList.remove('popup_opened');
-  const form = popup.querySelector('.form');
-  Array.from(form.querySelectorAll('.form__input-error')).forEach((inputError) => {
-    inputError.addEventListener('click', handleClickPopup);
-  });
-
 }  
 
 const openProfilePopup = () => {
   profileInputName.value = profileTitle.textContent;
   profileInputDescription.value = profileDescription.textContent;
-  const profileValidator = new FormValidator(configFormValidator, profileForm);
-  profileValidator.enableValidation();  
+  profileValidator.toggleButtonState();
   openPopup(profilePopup);
 }
 
@@ -71,8 +70,7 @@ const saveProfile = (evt) => {
 const openCardPopup = (evt) => {
   cardInputName.value = '';
   cardInputHref.value = '';
-  const cardValidator = new FormValidator(configFormValidator, cardForm);
-  cardValidator.enableValidation();
+  cardValidator.toggleButtonState();
   openPopup(cardPopup);
 }
 
