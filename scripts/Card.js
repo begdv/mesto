@@ -1,14 +1,9 @@
-import {openPopup} from './index.js';
-
-const imagePopup = document.querySelector('.popup_type_image');
-const imagePhoto = imagePopup.querySelector('.image-popup__photo');
-const imageTitle = imagePopup.querySelector('.image-popup__title');
-
 export default class Card{
-  constructor(card, cardSelector){
+  constructor(card, cardSelector, openImagePopup){
     this._name = card.name;
     this._image = card.link;
     this._cardSelector = cardSelector;
+    this._openImagePopup = openImagePopup;
   }
 
   _getTemplate(){
@@ -55,9 +50,6 @@ export default class Card{
   }  
 
   _handleOpenPopup(evt) {
-    imagePhoto.src = this._cardPhoto.src;
-    imagePhoto.alt = this._cardPhoto.alt;
-    imageTitle.textContent = this._cardPhoto.alt;
-    openPopup(imagePopup);
+    this._openImagePopup(this._cardPhoto);
   }
 }

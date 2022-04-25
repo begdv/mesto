@@ -33,3 +33,5 @@ export const initialCards = [
     errorClass: 'form__input-error',
     visibleErrorClass: 'form__input-error_visible'
   };
+
+  export const ESC_KEYCODE = 27;
