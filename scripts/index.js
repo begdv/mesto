@@ -22,10 +22,6 @@ const cardInputName = cardForm.querySelector('.form__input_field_card-name');
 const cardInputHref = cardForm.querySelector('.form__input_field_card-href');
 
 const cardsContainer = document.querySelector('.cards');
-const cardValidator = new FormValidator(configFormValidator, cardForm);
-cardValidator.enableValidation();
-const profileValidator = new FormValidator(configFormValidator, profileForm);
-profileValidator.enableValidation();  
 
 const imagePopup = document.querySelector('.popup_type_image');
 const imagePhoto = imagePopup.querySelector('.image-popup__photo');
@@ -65,6 +61,7 @@ const handleClickPopup = (evt) => {
   
 const closePopup = (popup) => {
   document.removeEventListener('keydown', handleEscapePopup);
+  hideFormErrors(popup);
   popup.classList.remove('popup_opened');
 }  
 
@@ -115,6 +112,23 @@ const makeInitialCards = (cards) => {
   });
 }
 
-makeInitialCards(initialCards);
 
+const cardValidator = new FormValidator(configFormValidator, cardForm);
+const profileValidator = new FormValidator(configFormValidator, profileForm);
+
+const enableValidation = () => {
+  cardValidator.enableValidation();  
+  profileValidator.enableValidation();  
+}
+
+const hideFormErrors = (form) => {
+  if(form.classList.contains("popup_type_card")){
+    cardValidator.hideFormErrors();
+  } else if (form.classList.contains("popup_type_profile")){
+    profileValidator.hideFormErrors();
+  } 
+}
+
+makeInitialCards(initialCards);
 setPopupListeners();
+enableValidation();
