@@ -27,16 +27,17 @@ const imagePopup = document.querySelector('.popup_type_image');
 const imagePhoto = imagePopup.querySelector('.image-popup__photo');
 const imageTitle = imagePopup.querySelector('.image-popup__title');
 
-const openImagePopup = (cardPhoto) => {
-  imagePhoto.src = cardPhoto.src;
-  imagePhoto.alt = cardPhoto.alt;
-  imageTitle.textContent = cardPhoto.alt;
+const openImagePopup = (card) => {
+  imagePhoto.src = card.link;
+  imagePhoto.alt = card.name;
+  imageTitle.textContent = card.name;
   openPopup(imagePopup);
 }
 
 const openProfilePopup = () => {
   profileInputName.value = profileTitle.textContent;
   profileInputDescription.value = profileDescription.textContent;
+  profileValidator.hideFormErrors();
   profileValidator.toggleButtonState();
   openPopup(profilePopup);
 }
@@ -61,7 +62,6 @@ const handleClickPopup = (evt) => {
   
 const closePopup = (popup) => {
   document.removeEventListener('keydown', handleEscapePopup);
-  hideFormErrors(popup);
   popup.classList.remove('popup_opened');
 }  
 
@@ -82,6 +82,7 @@ const saveProfile = (evt) => {
 const openCardPopup = (evt) => {
   cardInputName.value = '';
   cardInputHref.value = '';
+  cardValidator.hideFormErrors();
   cardValidator.toggleButtonState();
   openPopup(cardPopup);
 }
@@ -99,6 +100,10 @@ profileEdit.addEventListener('click', openProfilePopup);
 buttonAddMesto.addEventListener('click', openCardPopup);
 profileForm.addEventListener('submit', saveProfile);
 cardForm.addEventListener('submit', addNewCard);
+const popupList = Array.from(document.querySelectorAll('.popup'));
+popupList.forEach((popupElement) => {
+  popupElement.addEventListener('click', handleClickPopup);
+});  
 
 const addCard = (cardsContainer, item) => {
   const card = new Card(item, '.card-template', openImagePopup);
@@ -106,29 +111,11 @@ const addCard = (cardsContainer, item) => {
   cardsContainer.prepend(cardElement);
 }
 
-const makeInitialCards = (cards) => {
-  cards.forEach((item) => {
-    addCard(cardsContainer, item);
-  });
-}
-
+initialCards.forEach((item) => {
+  addCard(cardsContainer, item);
+});
 
 const cardValidator = new FormValidator(configFormValidator, cardForm);
 const profileValidator = new FormValidator(configFormValidator, profileForm);
-
-const enableValidation = () => {
-  cardValidator.enableValidation();  
-  profileValidator.enableValidation();  
-}
-
-const hideFormErrors = (form) => {
-  if(form.classList.contains("popup_type_card")){
-    cardValidator.hideFormErrors();
-  } else if (form.classList.contains("popup_type_profile")){
-    profileValidator.hideFormErrors();
-  } 
-}
-
-makeInitialCards(initialCards);
-setPopupListeners();
-enableValidation();
+cardValidator.enableValidation();  
+profileValidator.enableValidation();  
