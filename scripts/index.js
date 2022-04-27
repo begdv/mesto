@@ -65,13 +65,6 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
 }  
 
-const setPopupListeners = () => {
-  const popupList = Array.from(document.querySelectorAll('.popup'));
-  popupList.forEach((popupElement) => {
-    popupElement.addEventListener('click', handleClickPopup);
-  });  
-}
-
 const saveProfile = (evt) => {
   evt.preventDefault();
   profileTitle.textContent = profileInputName.value;
@@ -100,9 +93,10 @@ profileEdit.addEventListener('click', openProfilePopup);
 buttonAddMesto.addEventListener('click', openCardPopup);
 profileForm.addEventListener('submit', saveProfile);
 cardForm.addEventListener('submit', addNewCard);
+
 const popupList = Array.from(document.querySelectorAll('.popup'));
 popupList.forEach((popupElement) => {
-  popupElement.addEventListener('click', handleClickPopup);
+  popupElement.addEventListener('mousedown', handleClickPopup);
 });  
 
 const addCard = (cardsContainer, item) => {
