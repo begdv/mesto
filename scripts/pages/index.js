@@ -1,6 +1,7 @@
+import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import {initialCards, configFormValidator, ESC_KEYCODE} from '../utils/const.js';
+import {initialCards, configFormValidator, ESC_KEYCODE, cardSelector, cardTemplateSelector} from '../utils/const.js';
 
 const content = document.querySelector('.content');
 
@@ -21,13 +22,11 @@ const cardForm = cardPopup.querySelector('.card-form');
 const cardInputName = cardForm.querySelector('.form__input_field_card-name');
 const cardInputHref = cardForm.querySelector('.form__input_field_card-href');
 
-const cardsContainer = document.querySelector('.cards');
-
 const imagePopup = document.querySelector('.popup_type_image');
 const imagePhoto = imagePopup.querySelector('.image-popup__photo');
 const imageTitle = imagePopup.querySelector('.image-popup__title');
 
-const openImagePopup = (card) => {
+const handleCardClick = (card) => {
   imagePhoto.src = card.link;
   imagePhoto.alt = card.name;
   imageTitle.textContent = card.name;
@@ -82,10 +81,12 @@ const openCardPopup = (evt) => {
 
 const addNewCard = (evt) => {
   evt.preventDefault();
-  addCard(cardsContainer, {
+  const card = new Card({
     name: cardInputName.value,
     link: cardInputHref.value
-  });
+  }, cardTemplateSelector, handleCardClick);
+  const cardElement = card.generateCard();
+  cardList.addItem(cardElement);
   closePopup(cardPopup);
 } 
 
@@ -99,15 +100,13 @@ popupList.forEach((popupElement) => {
   popupElement.addEventListener('mousedown', handleClickPopup);
 });  
 
-const addCard = (cardsContainer, item) => {
-  const card = new Card(item, '.card-template', openImagePopup);
+const cardList = new Section({ items: initialCards, renderer: (item) => {
+  const card = new Card(item, cardTemplateSelector, handleCardClick);
   const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
-}
+  cardList.addItem(cardElement);
+} }, cardSelector);
 
-initialCards.forEach((item) => {
-  addCard(cardsContainer, item);
-});
+cardList.renderItems();
 
 const cardValidator = new FormValidator(configFormValidator, cardForm);
 const profileValidator = new FormValidator(configFormValidator, profileForm);
