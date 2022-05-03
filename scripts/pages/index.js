@@ -1,6 +1,6 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import {initialCards, configFormValidator, ESC_KEYCODE} from './const.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import {initialCards, configFormValidator, ESC_KEYCODE} from '../utils/const.js';
 
 const content = document.querySelector('.content');
 
