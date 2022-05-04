@@ -38,3 +38,9 @@ export const ESC_KEYCODE = 27;
 
 export const cardSelector = '.cards';
 export const cardTemplateSelector = '.card-template';
+
+export const profile = document.querySelector('.profile');
+export const profileEdit = profile.querySelector('.profile__edit');
+export const buttonAddMesto = profile.querySelector('.profile__add-mesto');
+export const profileForm = document.querySelector('.profile-form');
+export const cardForm = document.querySelector('.card-form');
