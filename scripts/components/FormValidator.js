@@ -18,7 +18,7 @@ export default class FormValidator{
     this.toggleButtonState();
   }
   _isValid(inputElement){
-    const errorElement = this._form.querySelector(`.${this._errorClass}_field_${inputElement.name}`);
+    const errorElement = this._form.querySelector(`.${this._errorClass}_field_${inputElement.id}`);
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, errorElement, inputElement.validationMessage);
     } else {
@@ -51,7 +51,7 @@ export default class FormValidator{
   }
   hideFormErrors(){
     this._inputList.forEach(inputElement => {
-      const errorElement = this._form.querySelector(`.${this._errorClass}_field_${inputElement.name}`);
+      const errorElement = this._form.querySelector(`.${this._errorClass}_field_${inputElement.id}`);
       this._hideInputError(inputElement, errorElement);
     })
   }

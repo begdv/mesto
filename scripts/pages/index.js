@@ -12,18 +12,12 @@ const imagePopup = new PopupWithImage('.popup_type_image');
 imagePopup.setEventListeners();
 
 const profilePopup = new PopupWithForm('.popup_type_profile', (formData) => {
-  userInfo.setUserInfo({
-    name: formData['profile-name'],
-    description: formData['profile-description']
-  });
+  userInfo.setUserInfo(formData);
 });
 profilePopup.setEventListeners();
 
 const cardPopup = new PopupWithForm('.popup_type_card', (formData) => {
-  const card = new Card({
-    name: formData['card-name'],
-    link: formData['card-href']
-  }, cardTemplateSelector, (item) => imagePopup.open(item));
+  const card = new Card(formData, cardTemplateSelector, (item) => imagePopup.open(item));
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);  
 });
