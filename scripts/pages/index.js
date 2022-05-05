@@ -3,15 +3,22 @@ import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import FormValidator from '../components/FormValidator.js';
+import UserInfo from '../components/UserInfo.js';
 import {initialCards, configFormValidator, cardSelector, cardTemplateSelector, profile, profileEdit, buttonAddMesto, profileForm, cardForm} from '../utils/const.js';
+
+const userInfo = new UserInfo('.profile__title', '.profile__description');
 
 const imagePopup = new PopupWithImage('.popup_type_image');
 imagePopup.setEventListeners();
+
 const profilePopup = new PopupWithForm('.popup_type_profile', (formData) => {
-  profile.querySelector('.profile__title').textContent = formData['profile-name'];
-  profile.querySelector('.profile__description').textContent = formData['profile-description'];
+  userInfo.setUserInfo({
+    name: formData['profile-name'],
+    description: formData['profile-description']
+  });
 });
 profilePopup.setEventListeners();
+
 const cardPopup = new PopupWithForm('.popup_type_card', (formData) => {
   const card = new Card({
     name: formData['card-name'],
@@ -23,8 +30,9 @@ const cardPopup = new PopupWithForm('.popup_type_card', (formData) => {
 cardPopup.setEventListeners();
 
 const openProfilePopup = () => {
-  profileForm.querySelector('.form__input_field_profile-name').value = profile.querySelector('.profile__title').textContent;
-  profileForm.querySelector('.form__input_field_profile-description').value = profile.querySelector('.profile__description').textContent;
+  const {name, description} = userInfo.getUserInfo();
+  profileForm.querySelector('.form__input_field_profile-name').value = name;
+  profileForm.querySelector('.form__input_field_profile-description').value = description;
   profileValidator.hideFormErrors();
   profileValidator.toggleButtonState();
   profilePopup.open();
