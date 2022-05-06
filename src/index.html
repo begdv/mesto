@@ -7,8 +7,7 @@
     <meta name="author" content="Бегунов Дмитрий">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Сервис Mesto</title>
-    <link rel="stylesheet" href="pages/index.css">
-    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<%=require('./images/favicon.ico')%>" type="image/x-icon">
   </head>
   <body class="root">
     <header class="header root__header"> 
@@ -16,7 +15,7 @@
     </header> 
     <main class="content root__content">
       <section class="profile content__profile">
-        <img class="profile__avatar" src="./images/profile/profile.jpg" alt="Фото профиля">
+        <img class="profile__avatar" src="<%=require('./images/profile/profile.jpg')%>" alt="Фото профиля">
         <div class="profile__header"><h1 class="profile__title">Юрий Визбор</h1>
           <button type="button" class="profile__edit"  title="Редактировать профиль"></button></div>
         <p class="profile__description">Артист, бард</p>
@@ -111,6 +110,5 @@
         <a class="card__button-trash" type="button"></a>
       </li>
     </template> 
-    <script type="module" src="./scripts/pages/index.js"></script>
   </body>
 </html>          

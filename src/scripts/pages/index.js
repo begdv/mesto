@@ -1,3 +1,4 @@
+import '../../pages/index.css';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -6,7 +7,10 @@ import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import {initialCards, configFormValidator, cardSelector, cardTemplateSelector, profile, profileEdit, buttonAddMesto, profileForm, cardForm} from '../utils/const.js';
 
-const userInfo = new UserInfo('.profile__title', '.profile__description');
+const userInfo = new UserInfo({
+  titleSelector: '.profile__title', 
+  descriptionSelector: '.profile__description'
+});
 
 const imagePopup = new PopupWithImage('.popup_type_image');
 imagePopup.setEventListeners();
@@ -17,7 +21,7 @@ const profilePopup = new PopupWithForm('.popup_type_profile', (formData) => {
 profilePopup.setEventListeners();
 
 const cardPopup = new PopupWithForm('.popup_type_card', (formData) => {
-  const card = new Card(formData, cardTemplateSelector, (item) => imagePopup.open(item));
+  const card = new Card({card: formData, handleCardClick: (item) => imagePopup.open(item)}, cardTemplateSelector);
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);  
 });
@@ -44,7 +48,7 @@ profileEdit.addEventListener('click', openProfilePopup);
 buttonAddMesto.addEventListener('click', openCardPopup);
 
 const cardList = new Section({ items: initialCards, renderer: (item) => {
-  const card = new Card(item, cardTemplateSelector, (item) => imagePopup.open(item));
+  const card = new Card({card: item, handleCardClick: (item) => imagePopup.open(item)}, cardTemplateSelector);
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 } }, cardSelector);
