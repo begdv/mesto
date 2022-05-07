@@ -34,8 +34,6 @@ export const configFormValidator = {
   visibleErrorClass: 'form__input-error_visible'
 };
 
-export const ESC_KEYCODE = 27;
-
 export const cardSelector = '.cards';
 export const cardTemplateSelector = '.card-template';
 
@@ -44,3 +42,6 @@ export const profileEdit = profile.querySelector('.profile__edit');
 export const buttonAddMesto = profile.querySelector('.profile__add-mesto');
 export const profileForm = document.querySelector('.profile-form');
 export const cardForm = document.querySelector('.card-form');
+
+export const profileInputName = profileForm.querySelector('.form__input_field_profile-name');
+export const profileInputDescription = profileForm.querySelector('.form__input_field_profile-description');

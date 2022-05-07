@@ -5,7 +5,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
-import {initialCards, configFormValidator, cardSelector, cardTemplateSelector, profile, profileEdit, buttonAddMesto, profileForm, cardForm} from '../utils/const.js';
+import {initialCards, configFormValidator, cardSelector, cardTemplateSelector, profile, profileEdit, buttonAddMesto, profileForm, cardForm, profileInputName, profileInputDescription} from '../utils/const.js';
 
 const userInfo = new UserInfo({
   titleSelector: '.profile__title', 
@@ -21,24 +21,21 @@ const profilePopup = new PopupWithForm('.popup_type_profile', (formData) => {
 profilePopup.setEventListeners();
 
 const cardPopup = new PopupWithForm('.popup_type_card', (formData) => {
-  const card = new Card({card: formData, handleCardClick: (item) => imagePopup.open(item)}, cardTemplateSelector);
-  const cardElement = card.generateCard();
+  const cardElement = createCard(formData);
   cardList.addItem(cardElement);  
 });
 cardPopup.setEventListeners();
 
 const openProfilePopup = () => {
   const {name, description} = userInfo.getUserInfo();
-  profileForm.querySelector('.form__input_field_profile-name').value = name;
-  profileForm.querySelector('.form__input_field_profile-description').value = description;
+  profileInputName.value = name;
+  profileInputDescription.value = description;
   profileValidator.hideFormErrors();
   profileValidator.toggleButtonState();
   profilePopup.open();
 }
 
 const openCardPopup = (evt) => {
-  cardForm.querySelector('.form__input_field_card-name').value = '';
-  cardForm.querySelector('.form__input_field_card-href').value = '';
   cardValidator.hideFormErrors();
   cardValidator.toggleButtonState();
   cardPopup.open();
@@ -47,9 +44,14 @@ const openCardPopup = (evt) => {
 profileEdit.addEventListener('click', openProfilePopup);
 buttonAddMesto.addEventListener('click', openCardPopup);
 
-const cardList = new Section({ items: initialCards, renderer: (item) => {
-  const card = new Card({card: item, handleCardClick: (item) => imagePopup.open(item)}, cardTemplateSelector);
-  const cardElement = card.generateCard();
+const createCard = (card) => {
+  const cardObject = new Card({card: card, handleCardClick: (card) => imagePopup.open(card)}, cardTemplateSelector);
+  const cardElement = cardObject.generateCard();
+  return cardElement;
+}
+
+const cardList = new Section({ items: initialCards, renderer: (card) => {
+  const cardElement = createCard(card);
   cardList.addItem(cardElement);
 } }, cardSelector);
 
