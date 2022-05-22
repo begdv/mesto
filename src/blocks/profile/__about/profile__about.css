@@ -1,4 +1,4 @@
-.profile__description{
+.profile__about{
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .profile__description{
+  .profile__about{
     margin-bottom: 0;
     grid-column: 2;
     grid-row: 2;
@@ -27,7 +27,7 @@
 } 
 
 @media screen and (min-width: 1280px) {
-  .profile__description{
+  .profile__about{
     max-width: 530px;
   }  
 }
