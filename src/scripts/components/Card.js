@@ -21,6 +21,7 @@ export default class Card{
     this._element = this._getTemplate();
     this._cardPhoto = this._element.querySelector('.card__photo');
     this._cardButtonLike = this._element.querySelector(".card__button-like");
+    this._cardLikes = this._element.querySelector(".card__likes");
     this._cardButtonTrash = this._element.querySelector(".card__button-trash");
     
     this._setEventListeners();
@@ -28,6 +29,7 @@ export default class Card{
     this._element.querySelector('.card__title').textContent = this._card.name;
     this._cardPhoto.src = this._card.link;
     this._cardPhoto.alt = this._card.name;
+    this._cardLikes.textContent = this._card.likes.length; 
   
     return this._element;
   }

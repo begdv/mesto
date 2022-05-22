@@ -62,6 +62,7 @@ api.getAllData().then(data => {
   userInfo.setAvatar(user.avatar);
   console.log(items);
   const cardList = new Section({ items, renderer: (card) => {
+      console.log(card.likes.length);
       const cardElement = createCard(card);
       cardList.addItem(cardElement);
     }}, 
