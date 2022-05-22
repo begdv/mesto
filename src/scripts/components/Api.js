@@ -23,7 +23,10 @@ export default class Api {
             return Promise.reject(`Ошибка: ${res.status}`);
         });
     }
-    patchProfile({name, about}) {
+    getAllData() {
+        return Promise.all([this.getInitialCards(), this.getProfile()]);
+    }          
+    saveProfile({name, about}) {
         return fetch(`${this._url}users/me`, {
             method: 'PATCH',
             headers: this._headers,
@@ -38,7 +41,19 @@ export default class Api {
             return Promise.reject(`Ошибка: ${res.status}`);
         });
     }
-    getAllData() {
-        return Promise.all([this.getInitialCards(), this.getProfile()]);
-    }          
+    addCard({name, link}) {
+        return fetch(`${this._url}cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+              name: name,
+              link: link
+            })
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
+    }    
 }    

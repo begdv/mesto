@@ -17,18 +17,13 @@ const userInfo = new UserInfo({
 const imagePopup = new PopupWithImage('.popup_type_image');
 
 const profilePopup = new PopupWithForm('.popup_type_profile', (formData) => {
-  api.patchProfile(formData).then(user => {
+  api.saveProfile(formData).then(user => {
     userInfo.setUserInfo(user);
   })
   .catch((err) => {
     console.log(err); 
   })  
 });  
-
-const cardPopup = new PopupWithForm('.popup_type_card', (formData) => {
-  const cardElement = createCard(formData);
-  cardList.addItem(cardElement);  
-});
 
 const cardValidator = new FormValidator(configFormValidator, cardForm);
 const profileValidator = new FormValidator(configFormValidator, profileForm);
@@ -40,12 +35,6 @@ const openProfilePopup = () => {
   profileValidator.hideFormErrors();
   profileValidator.toggleButtonState();
   profilePopup.open();
-}
-
-const openCardPopup = (evt) => {
-  cardValidator.hideFormErrors();
-  cardValidator.toggleButtonState();
-  cardPopup.open();
 }
 
 const createCard = (card) => {
@@ -67,14 +56,6 @@ const createCard = (card) => {
 
 const api = new Api(configApi);
 
-profilePopup.setEventListeners(); 
-cardPopup.setEventListeners();
-imagePopup.setEventListeners();    
-profileEdit.addEventListener('click', openProfilePopup);
-buttonAddMesto.addEventListener('click', openCardPopup); 
-cardValidator.enableValidation();  
-profileValidator.enableValidation(); 
-
 api.getAllData().then(data => {
   const [items, user] = data;
   userInfo.setUserInfo(user);
@@ -86,6 +67,27 @@ api.getAllData().then(data => {
     }}, 
     cardSelector);
   cardList.renderItems();
+  const cardPopup = new PopupWithForm('.popup_type_card', (formData) => {
+    api.addCard(formData).then(card => {
+      const cardElement = createCard(card);
+      cardList.addItem(cardElement);  
+    })
+    .catch((err) => {
+      console.log(err); 
+    }) 
+  });  
+  const openCardPopup = (evt) => {
+    cardValidator.hideFormErrors();
+    cardValidator.toggleButtonState();
+    cardPopup.open();
+  }  
+  cardPopup.setEventListeners();
+  profilePopup.setEventListeners(); 
+  imagePopup.setEventListeners();    
+  profileEdit.addEventListener('click', openProfilePopup);
+  buttonAddMesto.addEventListener('click', openCardPopup); 
+  cardValidator.enableValidation();  
+  profileValidator.enableValidation(); 
 }).catch((err) => {
   console.log(err); 
 }); 
