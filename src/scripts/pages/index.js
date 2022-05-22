@@ -10,7 +10,8 @@ import {initialCards, configApi, configFormValidator, cardSelector, cardTemplate
 
 const userInfo = new UserInfo({
   titleSelector: '.profile__title', 
-  descriptionSelector: '.profile__description'
+  descriptionSelector: '.profile__description',
+  avatarSelector: '.profile__avatar'
 });
 
 const imagePopup = new PopupWithImage('.popup_type_image');
@@ -48,6 +49,8 @@ buttonAddMesto.addEventListener('click', openCardPopup);
 const api = new Api(configApi);
 api.getAllData().then(data => {
   const [items, user] = data;
+  userInfo.setUserInfo(user);
+  userInfo.setAvatar(user.avatar);
   console.log(items);
   const cardList = new Section({ items, renderer: (card) => {
       const cardElement = createCard(card);
@@ -55,7 +58,6 @@ api.getAllData().then(data => {
     }}, 
     cardSelector);
   cardList.renderItems();
-  console.log(user);
 }).catch((err) => {
   console.log(err); 
 }); 
