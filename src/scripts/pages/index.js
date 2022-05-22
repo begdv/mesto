@@ -4,6 +4,7 @@ import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithSubmit from '../components/PopupWithSubmit.js';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import {configApi, configFormValidator, cardSelector, cardTemplateSelector, profileEdit, buttonAddMesto, profileForm, cardForm, profileInputName, profileInputAbout} from '../utils/const.js';
@@ -23,6 +24,16 @@ const profilePopup = new PopupWithForm('.popup_type_profile', (formData) => {
   .catch((err) => {
     console.log(err); 
   })  
+});  
+
+const submitPopup = new PopupWithSubmit('.popup_type_submit', () => {
+  console.log('delete');
+ /* api.saveProfile(formData).then(user => {
+    userInfo.setUserInfo(user);
+  })
+  .catch((err) => {
+    console.log(err); 
+  });*/
 });  
 
 const cardValidator = new FormValidator(configFormValidator, cardForm);
@@ -47,7 +58,8 @@ const createCard = (card) => {
       cardObject._toggleLikeCard();
     },
     handleTrashCard: (card) => {
-      cardObject._trashCard();
+      submitPopup.open(card);
+    //  cardObject._trashCard();
     }},    
     cardTemplateSelector);
   const cardElement = cardObject.generateCard();
@@ -62,7 +74,6 @@ api.getAllData().then(data => {
   userInfo.setAvatar(user.avatar);
   console.log(items);
   const cardList = new Section({ items, renderer: (card) => {
-      console.log(card.likes.length);
       const cardElement = createCard(card);
       cardList.addItem(cardElement);
     }}, 
@@ -84,7 +95,8 @@ api.getAllData().then(data => {
   }  
   cardPopup.setEventListeners();
   profilePopup.setEventListeners(); 
-  imagePopup.setEventListeners();    
+  imagePopup.setEventListeners();   
+  submitPopup.setEventListeners(); 
   profileEdit.addEventListener('click', openProfilePopup);
   buttonAddMesto.addEventListener('click', openCardPopup); 
   cardValidator.enableValidation();  
