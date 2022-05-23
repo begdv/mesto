@@ -40,14 +40,25 @@ const openProfilePopup = () => {
   profilePopup.open();
 }
 
-const createCard = (card) => {
+const createCard = (card, user) => {
+  card.own = (user._id === card.owner._id);
+  card.ownLike = card.likes.find(like => like.name == user.name) ? true : false;
   const cardObject = new Card({
     card: card, 
     handleCardClick: (card) => {
       imagePopup.open(card);
     }, 
     handleLikeCard: (card) => {
-      cardObject._toggleLikeCard();
+      if(cardObject._getOwnLike()) {
+        api.removeLikeCard(card._id).then((res) => {
+          cardObject._showLikeStatus(res.likes, false);
+        })
+      } else {
+        api.addLikeCard(card._id).then((res) => {
+          cardObject._showLikeStatus(res.likes, true);
+        })
+      }    
+//      cardObject._toggleLikeCard();
     },
     handleTrashCard: (card) => {
       submitPopup.setBeforeCloseAction(() => {
@@ -73,16 +84,14 @@ api.getAllData().then(data => {
   userInfo.setAvatar(user.avatar);
   console.log(items);
   const cardList = new Section({ items, renderer: (card) => {
-      card.own = (user._id === card.owner._id);
-      const cardElement = createCard(card);
+      const cardElement = createCard(card, user);
       cardList.addItem(cardElement);
     }}, 
     cardSelector);
   cardList.renderItems();
   const cardPopup = new PopupWithForm('.popup_type_card', (formData) => {
     api.addCard(formData).then(card => {
-      card.own = (user._id === card.owner._id);
-      const cardElement = createCard(card);
+      const cardElement = createCard(card, user);
       cardList.addItem(cardElement);  
     })
     .catch((err) => {
