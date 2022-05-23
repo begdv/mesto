@@ -26,15 +26,7 @@ const profilePopup = new PopupWithForm('.popup_type_profile', (formData) => {
   })  
 });  
 
-const submitPopup = new PopupWithSubmit('.popup_type_submit', () => {
-  console.log('delete');
- /* api.saveProfile(formData).then(user => {
-    userInfo.setUserInfo(user);
-  })
-  .catch((err) => {
-    console.log(err); 
-  });*/
-});  
+const submitPopup = new PopupWithSubmit('.popup_type_submit');  
 
 const cardValidator = new FormValidator(configFormValidator, cardForm);
 const profileValidator = new FormValidator(configFormValidator, profileForm);
@@ -58,8 +50,15 @@ const createCard = (card) => {
       cardObject._toggleLikeCard();
     },
     handleTrashCard: (card) => {
-      submitPopup.open(card);
-    //  cardObject._trashCard();
+      submitPopup.setBeforeCloseAction(() => {
+        api.removeCard(card._id).then(() => {
+          cardObject._trashCard();
+        })
+        .catch((err) => {
+          console.log(err); 
+        });
+      })
+      submitPopup.open();
     }},    
     cardTemplateSelector);
   const cardElement = cardObject.generateCard();
@@ -72,7 +71,6 @@ api.getAllData().then(data => {
   const [items, user] = data;
   userInfo.setUserInfo(user);
   userInfo.setAvatar(user.avatar);
-  console.log(user);
   console.log(items);
   const cardList = new Section({ items, renderer: (card) => {
       card.own = (user._id === card.owner._id);
@@ -83,6 +81,7 @@ api.getAllData().then(data => {
   cardList.renderItems();
   const cardPopup = new PopupWithForm('.popup_type_card', (formData) => {
     api.addCard(formData).then(card => {
+      card.own = (user._id === card.owner._id);
       const cardElement = createCard(card);
       cardList.addItem(cardElement);  
     })
