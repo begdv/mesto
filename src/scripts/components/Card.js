@@ -23,6 +23,9 @@ export default class Card{
     this._cardButtonLike = this._element.querySelector(".card__button-like");
     this._cardLikes = this._element.querySelector(".card__likes");
     this._cardButtonTrash = this._element.querySelector(".card__button-trash");
+    if(this._card.own){
+      this._cardButtonTrash.classList.remove('card__button-trash__hidden');
+    }
     
     this._setEventListeners();
 

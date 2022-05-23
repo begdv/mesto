@@ -72,8 +72,10 @@ api.getAllData().then(data => {
   const [items, user] = data;
   userInfo.setUserInfo(user);
   userInfo.setAvatar(user.avatar);
+  console.log(user);
   console.log(items);
   const cardList = new Section({ items, renderer: (card) => {
+      card.own = (user._id === card.owner._id);
       const cardElement = createCard(card);
       cardList.addItem(cardElement);
     }}, 
