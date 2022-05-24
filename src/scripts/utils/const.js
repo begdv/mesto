@@ -16,15 +16,14 @@ export const configApi = {
 };
 
 export const notifySaveActions = {
-  defaultMessage: 'Сохранить',
-  notifyMessage: 'Сохранение...'
+  defaultText: 'Сохранить',
+  notifyText: 'Сохранение...'
 };
 
 export const notifyAddActions = {
-  defaultMessage: 'Создать',
-  notifyMessage: 'Сохранение...'
+  defaultText: 'Создать',
+  notifyText: 'Сохранение...'
 };
-
 
 export const cardSelector = '.cards';
 export const cardTemplateSelector = '.card-template';

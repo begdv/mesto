@@ -23,15 +23,16 @@ export default class Card{
     this._cardButtonLike = this._element.querySelector(".card__button-like");
     this._cardLikes = this._element.querySelector(".card__likes");
     this._cardButtonTrash = this._element.querySelector(".card__button-trash");
+    this._cardTitle = this._element.querySelector('.card__title');
     
     this._setEventListeners();
 
-    if(this._card.own){
-      this._cardButtonTrash.classList.remove('card__button-trash__hidden');
-    }
-    this._element.querySelector('.card__title').textContent = this._card.name;
+    this._cardTitle.textContent = this._card.name;
     this._cardPhoto.src = this._card.link;
     this._cardPhoto.alt = this._card.name;
+    if(this._card.own){
+      this._cardButtonTrash.classList.remove('card__button-trash__hidden');
+    }    
     this._showCardOwnLike();
     this._showCardLikes();
   
