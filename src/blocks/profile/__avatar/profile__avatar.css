@@ -1,11 +1,23 @@
 .profile__avatar{
+  position: relative;
   grid-row: 1 / span 2;
-  width: 120px;
-  height: 120px;
-  background-size: cover;
-  border-radius: 50%;
   margin-bottom: 25px;
 }
+
+.profile__avatar:hover{
+  cursor: pointer;
+} 
+
+.profile__avatar:hover:before{
+  content: url(../../../images/profile/edit-avatar.svg); 
+  z-index: 1; 
+  position: absolute;
+  top: calc(50% - 13px);
+  left: calc(50% - 13px);
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+} 
 
 @media screen and (min-width: 1024px) {
   .profile__avatar{

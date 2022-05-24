@@ -15,13 +15,27 @@ export const configApi = {
     }
 };
 
+export const notifySaveActions = {
+  defaultMessage: 'Сохранить',
+  notifyMessage: 'Сохранение...'
+};
+
+export const notifyAddActions = {
+  defaultMessage: 'Создать',
+  notifyMessage: 'Сохранение...'
+};
+
+
 export const cardSelector = '.cards';
 export const cardTemplateSelector = '.card-template';
 
+export const profileAvatar = document.querySelector('.profile__avatar');
 export const profileEdit = document.querySelector('.profile__edit');
 export const buttonAddMesto = document.querySelector('.profile__add-mesto');
+export const avatarForm = document.querySelector('.avatar-form');
 export const profileForm = document.querySelector('.profile-form');
 export const cardForm = document.querySelector('.card-form');
 
+export const avatarInputHref = avatarForm.querySelector('.form__input_field_avatar-href');
 export const profileInputName = profileForm.querySelector('.form__input_field_profile-name');
 export const profileInputAbout = profileForm.querySelector('.form__input_field_profile-about');

@@ -70,13 +70,9 @@ export default class Card{
   _showLikeStatus(likes, ownLike) {
     this._setLikes(likes);
     this._setOwnLike(ownLike);
-    this._showCardOwnLike();
     this._showCardLikes();    
+    this._showCardOwnLike();
   } 
-
-  _setLikeCount(likeCount) {
-    this._cardLikes.textContent = likeCount; 
-  }
     
   _trashCard() {
     this._element.remove();
