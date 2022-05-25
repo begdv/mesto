@@ -25,13 +25,13 @@ const profilePopup = new PopupWithForm(
     api.saveProfile(formData)
       .then(user => {
         userInfo.setUserInfo(user);
+        profilePopup.close();
       })
       .catch((err) => {
         console.log(err); 
       })
       .finally(() => {
         notifyApiAction('.profile-form .form__button-save', notifySaveActions, false);
-        profilePopup.close();
       })  
   }
 );  
@@ -43,13 +43,13 @@ const avatarPopup = new PopupWithForm(
     api.saveAvatar(formData)
       .then(user => {
         userInfo.setAvatar(user.avatar);
+        avatarPopup.close();
       })
       .catch((err) => {
         console.log(err); 
       })
       .finally(() => {
         notifyApiAction('.avatar-form .form__button-save', notifySaveActions, false);
-        avatarPopup.close();
       })
   }
 );  
@@ -109,13 +109,11 @@ const createCard = (card, user) => {
           api.removeCard(card._id)
             .then(() => {
               cardObject._trashCard();
+              cardRemovePopup.close();
             })
             .catch((err) => {
               console.log(err); 
             })      
-            .finally(() => {
-              cardRemovePopup.close();
-            });
         })
         cardRemovePopup.open();
       }
@@ -155,13 +153,13 @@ api.getAllData()
           .then(card => {
             const cardElement = createCard(card, user);
             cardList.addItem(cardElement);  
+            cardPopup.close();
           })
           .catch((err) => {
             console.log(err); 
           })
           .finally(() => {
             notifyApiAction('.card-form .form__button-new', notifyAddActions, false);
-            cardPopup.close();
         })
       }
     );    
